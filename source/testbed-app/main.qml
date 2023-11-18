@@ -8,16 +8,19 @@ ApplicationWindow {
     title: Application.displayName
     visible: true
 
-    width: Screen.width
-    height: Screen.height
-    x: 0
+    width: Screen.width / 2
+    height: Screen.height / 2
+    x: Screen.width / 2
     y: 0
 
-    Button {
-        id: pushMe
+    Image {
+        id: image
+        width: parent.width / 2
+        height: parent.height / 2
         anchors.centerIn: parent
-        text: "Push me!"
-        onClicked: Qt.callLater(Qt.quit)
+
+        source: "qrc:/assets/logo.svg"
+        fillMode: Image.PreserveAspectFit
     }
 
     Component.onCompleted: {

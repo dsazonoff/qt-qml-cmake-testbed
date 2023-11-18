@@ -8,6 +8,7 @@ void dumpResources()
         << ":/qt-project.org"
         << ":/qpdf";
 
+    qInfo() << "\nProject resources: ";
     for (auto it = QDirIterator{":", QDirIterator::Subdirectories}; it.hasNext();)
     {
         const auto & path = it.next();
@@ -26,13 +27,20 @@ void dumpResources()
 int main(int argc, char * argv[])
 {
     QGuiApplication app{argc, argv};
-    // dumpResources();
+
+    QGuiApplication::setApplicationDisplayName(APP_NAME);
+    QGuiApplication::setWindowIcon(QIcon{"qrc:/assets/logo.png"});
+
+    assert(!QGuiApplication::windowIcon().isNull());
 
     QQmlApplicationEngine engine;
-    engine.load("qrc:/qt/qml/testbed/main.qml");
+    engine.load("qrc:/qt/qml/dsazonoff/com/testbed/main.qml");
 
     if (engine.rootObjects().isEmpty())
+    {
+        dumpResources();
         return -1;
+    }
 
     const auto ret_code = QGuiApplication::exec();
     return ret_code;

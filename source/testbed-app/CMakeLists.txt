@@ -4,7 +4,7 @@ include(utils)
 
 # Target
 set(target_name "testbed")
-set(target_uri ${target_name})
+set(target_uri "dsazonoff.com/${target_name}")
 
 qt_add_executable(${target_name})
 
@@ -36,12 +36,26 @@ target_link_libraries(${target_name} PRIVATE
 qt_import_qml_plugins(${target_name})
 
 
+# Resources
+enumerate_files(asset_files PATH "${CMAKE_SOURCE_DIR}/source/assets" EXTENSIONS "*")
+qt_add_resources(${target_name} "assets"
+    BASE "${CMAKE_SOURCE_DIR}/source"
+    FILES ${asset_files}
+)
+
+
 # Deploy
+
+# Icon
+set(app_icon "${CMAKE_SOURCE_DIR}/source/assets/logo.icns")
+set_source_files_properties(${app_icon} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+target_sources(${target_name} PRIVATE ${app_icon})
+
+# Bundle
 set_target_properties(${target_name} PROPERTIES
     OUTPUT_NAME "${app_name}"
     MACOSX_BUNDLE TRUE
 )
-
 set_target_properties(${target_name} PROPERTIES
     MACOSX_BUNDLE_BUNDLE_NAME "${app_name}"
     MACOSX_BUNDLE_GUI_IDENTIFIER "${bundle_identifier}"
