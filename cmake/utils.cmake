@@ -1,4 +1,4 @@
-include_guard(GLOBAL)
+include_guard(DIRECTORY)
 
 
 # Trace a list of variables
@@ -26,7 +26,6 @@ endfunction()
 
 
 # TODO: add description
-set(mds_default_sources_ext "cpp" "h")
 function(enumerate_files files)
     cmake_parse_arguments(PARSE_ARGV 1 in "" "PATH;EXCLUDE_REGEX;BASE_DIRECTORY" "EXTENSIONS")
 

@@ -1,6 +1,9 @@
 // This is an independent project of an individual developer. Dear PVS-Studio, please check it.
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
 
+//#include <QtQml/qqmlextensionplugin.h>
+//Q_IMPORT_QML_PLUGIN(wheelplugin)
+
 
 void dumpResources()
 {
@@ -31,10 +34,10 @@ int main(int argc, char * argv[])
     QGuiApplication::setApplicationDisplayName(APP_NAME);
     QGuiApplication::setWindowIcon(QIcon{"qrc:/assets/logo.png"});
 
-    assert(!QGuiApplication::windowIcon().isNull());
+    // QLoggingCategory::setFilterRules("*=true");
 
     QQmlApplicationEngine engine;
-    engine.load("qrc:/qt/qml/dsazonoff/com/testbed/main.qml");
+    engine.load("qrc:/qt/qml/com/dsazonoff/testbed/main.qml");
 
     if (engine.rootObjects().isEmpty())
     {

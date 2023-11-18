@@ -1,4 +1,4 @@
-include_guard(GLOBAL)
+include_guard(DIRECTORY)
 
 
 # Compiler options
@@ -25,3 +25,6 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     list(APPEND mds_clang_options /EHs)
     list(APPEND mds_compile_definitions _WIN32_WINNT=0x0601)
 endif ()
+
+# Default source file extensions
+set(mds_default_sources_ext "cpp" "h")
