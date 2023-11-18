@@ -1,0 +1,8 @@
+# Build output
+build/
+distr/
+.idea/
+.PVS-Studio/
+
+# Misc
+.DS_Store
