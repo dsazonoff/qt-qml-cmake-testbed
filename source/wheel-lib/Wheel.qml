@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
+import QtQuick.Dialogs
+
 
 Image {
     id: image
@@ -20,6 +22,12 @@ Image {
         running: mouseArea.containsMouse
     }
 
+    MessageDialog {
+        id: messagebox
+        buttons: MessageDialog.Ok
+        text: "Hi there!"
+    }
+
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -33,5 +41,6 @@ Image {
             animation.from = angle
             animation.to = angle + 360
         }
+        onClicked: messagebox.open()
     }
 }
